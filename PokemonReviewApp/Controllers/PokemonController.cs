@@ -23,7 +23,7 @@ namespace PokemonReviewApp.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Pokemon>))]
         public IActionResult GetPokemons()
         {
-            var pokemons = _mapper.Map<List<PokemonDto>>(_pokemonRepository.GetPokemons()); //Automapper do a data binding.
+            var pokemons = _mapper.Map<List<PokemonDto>>(_pokemonRepository.GetPokemons()); //Automapper does a data binding.
 
             if(!ModelState.IsValid) //Validation
             {
