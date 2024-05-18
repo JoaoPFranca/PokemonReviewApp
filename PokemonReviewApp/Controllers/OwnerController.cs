@@ -79,7 +79,7 @@ namespace PokemonReviewApp.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateCountry([FromQuery] int countryId, [FromBody] OwnerDto ownerDto)
+        public IActionResult CreateOwner([FromQuery] int countryId, [FromBody] OwnerDto ownerDto)
         {
             if (ownerDto == null)
             {

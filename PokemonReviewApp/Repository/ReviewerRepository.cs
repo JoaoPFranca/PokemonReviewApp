@@ -16,6 +16,12 @@ namespace PokemonReviewApp.Repository
             _mapper = mapper;
         }
 
+        public bool CreateReviewer(Reviewer reviewer)
+        {
+            _context.Add(reviewer);
+            return Save();
+        }
+
         public Reviewer GetReviewer(int reviewerId)
         {
             return _context.Reviewers.Where(r => r.Id == reviewerId).Include(e => e.Reviews).FirstOrDefault(); //We can use Include to literally include the reviews on the reviewer (The navigation property).
@@ -34,6 +40,12 @@ namespace PokemonReviewApp.Repository
         public bool ReviewerExists(int id)
         {
             return _context.Reviewers.Any(r => r.Id == id);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }
