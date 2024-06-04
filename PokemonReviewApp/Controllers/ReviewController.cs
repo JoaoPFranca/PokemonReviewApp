@@ -151,5 +151,32 @@ namespace PokemonReviewApp.Controllers
 
             return NoContent(); //To return 204. Very used on updates.
         }
+
+
+        [HttpDelete("{reviewId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteReview(int reviewId)
+        {
+            if (!_reviewRepository.ReviewExists(reviewId))
+            {
+                return NotFound();
+            }
+
+            var reviewToDelete = _reviewRepository.GetReview(reviewId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!_reviewRepository.DeleteReview(reviewToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting");
+            }
+
+            return NoContent();
+        }
     }
 }

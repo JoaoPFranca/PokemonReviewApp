@@ -16,6 +16,8 @@ namespace PokemonReviewApp.Interfaces
         //PUT/Update
         bool UpdateCategory(Category category);
 
+        //DELETE
+        bool DeleteCategory(Category category);
 
         bool Save();
     }
